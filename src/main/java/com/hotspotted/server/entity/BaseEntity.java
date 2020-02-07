@@ -1,4 +1,4 @@
-package com.partify.server.entity;
+package com.hotspotted.server.entity;
 
 import lombok.Getter;
 import lombok.Setter;
