@@ -1,0 +1,6 @@
+component_depth: 7
+languages:
+  - name: java
+    production:
+      exclude:
+      - /authentication/.*
