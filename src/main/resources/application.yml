@@ -1,4 +1,9 @@
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OATH2_ISSUER}
   datasource:
     url: ${SPRING_DATABASE_URL}
     username: ${SPRING_DATABASE_USERNAME}
@@ -9,6 +14,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate.jdbc.lob.non_contextual-creation: true
+    open-in-view: false
 server:
   port: 9999
   error:
