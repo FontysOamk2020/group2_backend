@@ -3,11 +3,13 @@
 ## Running this local
 In order to run this project local you need to configure a few parameters in the `Run/Debug Configuration`.
 
-|          Name | Value |
-| -------------:| ------ |
-|     `SPRING_DATABASE_URL` | jdbc:postgresql://xxxxxxxxxxxxxxx |
-|     `SPRING_DATABASE_USERNAME` | xxxxxxxxxxxxxxx |
-|     `SPRING_DATABASE_PASSWORD` | xxxxxxxxxxxxxxx |
+| Name | Value |
+| ---:| --- |
+| `SPRING_DATABASE_URL` | jdbc:postgresql://xxxxxxxxxxxxxxx |
+| `SPRING_DATABASE_USERNAME` | xxxxxxxxxxxxxxx |
+| `SPRING_DATABASE_PASSWORD` | xxxxxxxxxxxxxxx |
+| `OATH2_IDENTIFIER` | xxxxxxxxxxxxxxx |
+| `OATH2_ISSUER` | xxxxxxxxxxxxxxx |
 
 ## Production host
 This project is hosted on Heroku. Here is the base url of the project: https://hotspotted-server.herokuapp.com/.
