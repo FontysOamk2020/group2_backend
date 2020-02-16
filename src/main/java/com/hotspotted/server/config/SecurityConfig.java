@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${OATH2_IDENTIFIER}")
     private String audience;
 
-    @Value("${OATH2_ISSUER}")
+    @Value("${OATH2_DOMAIN}")
     private String issuer;
 
     @Override
@@ -29,8 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
         converter.setJwtGrantedAuthoritiesConverter(new PermissionsGrantedAuthoritiesConverter());
 
-        http.authorizeRequests()
+        http.httpBasic().disable().authorizeRequests()
                 .mvcMatchers("/hotspot/search").permitAll()
+                .mvcMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer().jwt().jwtAuthenticationConverter(converter);

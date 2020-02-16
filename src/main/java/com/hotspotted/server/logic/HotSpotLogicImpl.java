@@ -1,7 +1,6 @@
 package com.hotspotted.server.logic;
 
-import com.hotspotted.server.entity.HotSpot;
-import com.hotspotted.server.entity.User;
+import com.hotspotted.server.entity.*;
 import com.hotspotted.server.service.HotSpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,14 +19,22 @@ public class HotSpotLogicImpl implements HotSpotLogic {
     }
 
     @Override
-    public Optional<HotSpot> findById(UUID id) { return hotspotService.findById(id); }
+    public Optional<HotSpot> findById(UUID id) {
+        return hotspotService.findById(id);
+    }
 
     @Override
-    public List<HotSpot> getByOwner(User user) { return hotspotService.getByOwner(user); }
+    public List<HotSpot> getByOwner(Student student) {
+        return hotspotService.getByOwner(student);
+    }
 
     @Override
-    public void deleteById(UUID id) { hotspotService.deleteById(id); }
+    public void deleteById(UUID id) {
+        hotspotService.deleteById(id);
+    }
 
     @Override
-    public HotSpot createOrUpdate(HotSpot hotspot) { return hotspotService.createOrUpdate(hotspot); }
+    public HotSpot createOrUpdate(HotSpot hotspot) {
+        return hotspotService.createOrUpdate(hotspot);
+    }
 }

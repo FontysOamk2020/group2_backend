@@ -1,6 +1,7 @@
 package com.hotspotted.server.entity;
 
-import com.hotspotted.server.entity.enums.Planet;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.hotspotted.server.dto.enums.Planet;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -13,16 +14,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "address")
 @EntityListeners(AuditingEntityListener.class)
-@Getter
-@Setter
+@Getter @Setter
 public class Address extends BaseEntity implements Serializable {
-
-
-    @OneToOne(
-            fetch = FetchType.EAGER
-    )
-    private HotSpot hotSpot;
-
     @NotBlank
     private String address;
     private String postalCode;

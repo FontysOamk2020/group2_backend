@@ -1,4 +1,4 @@
-package com.hotspotted.server.entity.enums;
+package com.hotspotted.server.dto.enums;
 
 public enum WeekDay {
     MONDAY("Monday"),

@@ -1,6 +1,7 @@
 package com.hotspotted.server.entity;
 
-import com.hotspotted.server.entity.enums.WeekDay;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.hotspotted.server.dto.enums.WeekDay;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,18 +12,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "opening-hours")
+@Table(name = "opening_hours")
 @EntityListeners(AuditingEntityListener.class)
 @Getter @Setter
 public class OpeningHours extends BaseEntity implements Serializable {
-
-    @OneToOne(
-            fetch = FetchType.EAGER
-    )
-    private HotSpot hotSpot;
-
     @NotNull
     private WeekDay weekDay;
+
+    @JsonFormat(pattern = "HH:mm")
     private Date openingTime;
+
+    @JsonFormat(pattern = "HH:mm")
     private Date closingTime;
 }
