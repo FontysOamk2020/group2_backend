@@ -1,5 +1,6 @@
 package com.hotspotted.server.logic;
 
+import com.hotspotted.server.dto.HotSpotSearch;
 import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.service.HotSpotService;
@@ -25,8 +26,8 @@ public class HotSpotLogicImpl implements HotSpotLogic {
     }
 
     @Override
-    public List<HotSpot> getByOwner(Student student) {
-        return hotspotService.getByOwner(student);
+    public List<HotSpot> getBySearchParams(HotSpotSearch search) {
+        return hotspotService.findBySearchParams(search.getLongitude(), search.getLatitude(), search.getRange());
     }
 
     @Override
