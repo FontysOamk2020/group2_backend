@@ -11,12 +11,6 @@ In order to run this project local you need to configure a few parameters in the
 | `OATH2_IDENTIFIER` | xxxxxxxxxxxxxxx |
 | `OATH2_DOMAIN` | xxxxxxxxxxxxxxx |
 
-If you use your own PostgresSQL database you need to install the following extensions using this command:
-```
-CREATE EXTENSION cube;
-CREATE EXTENSION earthdistance;
-```
-(Run that as SQL query)
 ## Production host
 This project is hosted on Heroku. Here is the base url of the project: https://hotspotted-server.herokuapp.com/.
 
@@ -26,8 +20,3 @@ Heroku offers a free tier. I use this tier for the hosting. The downside of this
 Every pull request that targets the master branch will automatically be tested with GitHub Actions. You can view the status of the CI in the pull request itself. Before you can merge this status check will need to be passed. Also, another person needs to approve the pull request by reviewing it.
 
 After successfully merging the pull request GitHub automatically deploys the app to Heroku.
-
-## API DOCS
-The OpenAPI 3 documentation can be found in a Swagger UI. This is `{your base url and port}/swagger-ui.html`.
-
-For the live docs on the server you can look at: https://hotspotted-server.herokuapp.com/swagger-ui.html.

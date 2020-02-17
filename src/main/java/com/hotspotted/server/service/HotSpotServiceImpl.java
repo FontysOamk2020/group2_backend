@@ -25,8 +25,8 @@ public class HotSpotServiceImpl implements HotSpotService {
     }
 
     @Override
-    public List<HotSpot> findBySearchParams(double longitude, double latitude, int range) {
-        return hotSpotRepository.findBySearchParams(longitude, latitude, range);
+    public List<HotSpot> getByOwner(Student student) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

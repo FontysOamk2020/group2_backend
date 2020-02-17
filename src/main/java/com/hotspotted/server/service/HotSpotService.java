@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface HotSpotService {
     Optional<HotSpot> findById(UUID id);
 
-    List<HotSpot> findBySearchParams(double longitude, double latitude, int range);
+    List<HotSpot> getByOwner(Student student);
 
     void deleteById(UUID id);
 
