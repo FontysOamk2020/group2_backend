@@ -9,7 +9,7 @@ In order to run this project local you need to configure a few parameters in the
 | `SPRING_DATABASE_USERNAME` | xxxxxxxxxxxxxxx |
 | `SPRING_DATABASE_PASSWORD` | xxxxxxxxxxxxxxx |
 | `OATH2_IDENTIFIER` | xxxxxxxxxxxxxxx |
-| `OATH2_ISSUER` | xxxxxxxxxxxxxxx |
+| `OATH2_DOMAIN` | xxxxxxxxxxxxxxx |
 
 ## Production host
 This project is hosted on Heroku. Here is the base url of the project: https://hotspotted-server.herokuapp.com/.
