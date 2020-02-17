@@ -5,6 +5,7 @@ public enum Category {
     SPORTS("Sports"),
     DRINKS("Drinks"),
     ARTS("Arts"),
+    KNOWLEDGE("Knowledge"),
     MUSIC("Music");
 
     private final String text;
