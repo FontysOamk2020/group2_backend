@@ -1,7 +1,6 @@
 package com.hotspotted.server.controller;
 
 import com.hotspotted.server.controller.enums.Response;
-import com.hotspotted.server.dto.HotSpotSearch;
 import com.hotspotted.server.dto.NewHotSpot;
 import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.Student;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController()
 @RequestMapping("/hotspot")
@@ -35,8 +33,8 @@ public class HotSpotController {
 
     @SecurityRequirements
     @GetMapping("/search")
-    public List<HotSpot> search(@Valid HotSpotSearch hotSpotSearch) {
-        return hotSpotLogic.getBySearchParams(hotSpotSearch);
+    public String search() {
+        return "Hello there";
     }
 
     @PreAuthorize("hasAuthority('write:hotspot')")
