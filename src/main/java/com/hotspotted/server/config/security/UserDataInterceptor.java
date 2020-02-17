@@ -3,7 +3,6 @@ package com.hotspotted.server.config.security;
 import com.hotspotted.server.dto.Auth0User;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.logic.Auth0Logic;
-
 import com.hotspotted.server.logic.StudentLogic;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;

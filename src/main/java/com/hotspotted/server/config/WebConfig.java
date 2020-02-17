@@ -1,7 +1,6 @@
 package com.hotspotted.server.config;
 
 import com.hotspotted.server.config.security.UserDataInterceptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

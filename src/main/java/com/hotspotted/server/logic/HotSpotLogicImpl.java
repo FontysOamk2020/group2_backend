@@ -1,6 +1,7 @@
 package com.hotspotted.server.logic;
 
-import com.hotspotted.server.entity.*;
+import com.hotspotted.server.entity.HotSpot;
+import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.service.HotSpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,7 @@
 package com.hotspotted.server.config;
 
-import com.hotspotted.server.config.security.*;
+import com.hotspotted.server.config.security.AudienceValidator;
+import com.hotspotted.server.config.security.PermissionsGrantedAuthoritiesConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -6,21 +6,17 @@ import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.logic.HotSpotLogic;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import static org.springframework.http.ResponseEntity.ok;
 
 @RestController()
 @RequestMapping("/hotspot")
@@ -35,6 +31,7 @@ public class HotSpotController {
         this.hotSpotLogic = hotSpotLogic;
     }
 
+    @SecurityRequirements
     @GetMapping("/search")
     public String search() {
         return "Hello there";
@@ -42,19 +39,14 @@ public class HotSpotController {
 
     @PreAuthorize("hasAuthority('write:hotspot')")
     @PostMapping()
-    public ResponseEntity create(@Valid @RequestBody NewHotSpot newHotSpot, @Parameter(hidden = true) @RequestAttribute("student") Student student) {
+    public HotSpot create(@Valid @RequestBody NewHotSpot newHotSpot, @Parameter(hidden = true) @RequestAttribute("student") Student student) {
         try {
             HotSpot hotSpotFromDTO = modelMapper.map(newHotSpot, HotSpot.class);
             hotSpotFromDTO.setCreator(student);
-            HotSpot hotSpot = this.hotSpotLogic.createOrUpdate(hotSpotFromDTO);
-
-            Map<Object, Object> model = new LinkedHashMap<>();
-            model.put("hotspot", hotSpot);
-            return ok(model);
+            return this.hotSpotLogic.createOrUpdate(hotSpotFromDTO);
         } catch (Exception e) {
             logger.error("Something went wrong", e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Response.UNEXPECTED_ERROR.toString());
         }
-
     }
 }

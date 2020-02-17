@@ -4,12 +4,9 @@ import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.repository.StudentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class StudentServiceImpl implements StudentService {
