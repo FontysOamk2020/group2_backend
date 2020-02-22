@@ -1,6 +1,7 @@
 package com.hotspotted.server.dto;
 
 import com.hotspotted.server.dto.enums.Planet;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -19,5 +20,6 @@ class Address {
     @NotNull(message = "Please provide: address.country")
     String country;
 
+    @Schema(example = "EARTH")
     Planet planet = Planet.EARTH;
 }

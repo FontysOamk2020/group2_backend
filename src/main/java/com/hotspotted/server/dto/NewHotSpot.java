@@ -1,6 +1,7 @@
 package com.hotspotted.server.dto;
 
 import com.hotspotted.server.dto.enums.Category;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ public class NewHotSpot {
     @NotNull(message = "Please provide: address")
     Address address;
 
+    @Schema(example = "FOOD")
     @Valid
     @NotNull(message = "Please provide: category")
     Category category;
