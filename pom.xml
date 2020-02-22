@@ -19,6 +19,10 @@
 
     <properties>
         <java.version>11</java.version>
+        <sonar.projectKey>FontysOamk2020_group2_backend</sonar.projectKey>
+        <sonar.organization>fontysoamk2020</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>a619b8bb95f574de1fb966a4cac98f82db5da882</sonar.login>
     </properties>
 
     <dependencies>
