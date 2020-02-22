@@ -1,7 +1,7 @@
 # Hotspotted-server
 ![Java CI](https://github.com/FontysOamk2020/group2_backend/workflows/Java%20CI/badge.svg)
 ![Heroku](https://heroku-badge.herokuapp.com/?app=hotspotted-server&svg=1)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=FontysOamk2020_group2_backend&metric=alert_status)](https://sonarcloud.io/dashboard?id=FontysOamk2020_group2_backend)
 
 ## Running this local
 In order to run this project local you need to configure a few parameters in the `Run/Debug Configuration`.
