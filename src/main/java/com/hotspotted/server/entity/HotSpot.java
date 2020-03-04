@@ -22,6 +22,10 @@ public class HotSpot extends BaseEntity implements Serializable {
 
     private String description;
 
+    @NotBlank
+    @Column(unique = true)
+    private String slug;
+
     @ManyToOne(
         fetch = FetchType.EAGER,
         optional = false
