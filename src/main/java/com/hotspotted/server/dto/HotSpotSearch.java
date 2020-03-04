@@ -1,8 +1,10 @@
 package com.hotspotted.server.dto;
 
+import com.hotspotted.server.dto.enums.Category;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -24,4 +26,7 @@ public class HotSpotSearch {
     @NotNull
     @Positive
     int range;
+
+    @Valid
+    Category category;
 }

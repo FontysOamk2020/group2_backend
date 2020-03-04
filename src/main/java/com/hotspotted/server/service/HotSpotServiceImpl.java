@@ -1,5 +1,6 @@
 package com.hotspotted.server.service;
 
+import com.hotspotted.server.dto.enums.Category;
 import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.repository.HotSpotRepository;
@@ -25,8 +26,8 @@ public class HotSpotServiceImpl implements HotSpotService {
     }
 
     @Override
-    public List<HotSpot> findBySearchParams(double longitude, double latitude, int range) {
-        return hotSpotRepository.findBySearchParams(longitude, latitude, range);
+    public List<HotSpot> findBySearchParams(double longitude, double latitude, int range, Optional<Category> category) {
+        return hotSpotRepository.findBySearchParams(longitude, latitude, range, category);
     }
 
     @Override
