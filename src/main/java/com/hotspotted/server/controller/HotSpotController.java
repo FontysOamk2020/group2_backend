@@ -3,6 +3,7 @@ package com.hotspotted.server.controller;
 import com.hotspotted.server.controller.enums.Response;
 import com.hotspotted.server.dto.HotSpotSearch;
 import com.hotspotted.server.dto.NewHotSpot;
+import com.hotspotted.server.dto.enums.Category;
 import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.logic.HotSpotLogic;

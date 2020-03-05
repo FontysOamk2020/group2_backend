@@ -28,7 +28,7 @@ public class HotSpotLogicImpl implements HotSpotLogic {
 
     @Override
     public List<HotSpot> getBySearchParams(HotSpotSearch search) {
-        return hotspotService.findBySearchParams(search.getLongitude(), search.getLatitude(), search.getRange());
+        return hotspotService.findBySearchParams(search.getLongitude(), search.getLatitude(), search.getRange(), Optional.ofNullable(search.getCategory()));
     }
 
     @Override
