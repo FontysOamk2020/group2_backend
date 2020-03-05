@@ -46,7 +46,7 @@ public class HotSpotLogicImpl implements HotSpotLogic {
         Slugify slg = new Slugify();
         int count = hotspotService.findByName(hotspot.getName()).size() + 1;
         String slug = slg.slugify(hotspot.getName() + count);
-        //hotspot.setSlug(slug)
+        hotspot.setSlug(slug);
         return hotspotService.createOrUpdate(hotspot);
     }
 }
