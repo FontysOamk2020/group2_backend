@@ -31,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         converter.setJwtGrantedAuthoritiesConverter(new PermissionsGrantedAuthoritiesConverter());
 
         http.httpBasic().disable().authorizeRequests()
-                .mvcMatchers("/hotspot/search").permitAll()
-                .mvcMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                .mvcMatchers("/hotspot/search", "/hotspot/categories", "/hotspot/{slug}").permitAll()
+                .mvcMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/markers/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer().jwt().jwtAuthenticationConverter(converter);

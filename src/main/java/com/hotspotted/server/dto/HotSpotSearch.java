@@ -23,10 +23,12 @@ public class HotSpotSearch {
     double latitude;
 
     @Schema(description = "The range (in meters)", required = true, example = "50")
-    @NotNull
+    @Max(value = 2147483647, message = "The range can't be higher than 2147483647")
+    @NotNull(message = "The range should be greater than 0")
     @Positive
     int range;
 
     @Valid
+    @Schema(example = "FOOD")
     Category category;
 }

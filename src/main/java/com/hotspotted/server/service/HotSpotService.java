@@ -1,5 +1,6 @@
 package com.hotspotted.server.service;
 
+import com.hotspotted.server.dto.HotSpotSearch;
 import com.hotspotted.server.dto.enums.Category;
 import com.hotspotted.server.entity.HotSpot;
 
@@ -8,13 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface HotSpotService {
-    Optional<HotSpot> findById(UUID id);
-
-    List<HotSpot> findBySearchParams(double longitude, double latitude, int range, Optional<Category> category);
-
-    List<HotSpot> findByName(String name);
-
-    void deleteById(UUID id);
-
+    List<HotSpot> findBySearchParams(HotSpotSearch search);
+    Optional<HotSpot> findBySlug(String slug);
     HotSpot createOrUpdate(HotSpot hotspot);
 }

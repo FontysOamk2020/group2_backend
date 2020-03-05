@@ -10,9 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface HotSpotLogic {
-    Optional<HotSpot> findById(UUID id);
     List<HotSpot> getBySearchParams(HotSpotSearch search);
-    List<HotSpot> findByName(String name);
-    void deleteById(UUID id);
+    Optional<HotSpot> findBySlug(String slug);
     HotSpot createOrUpdate(HotSpot hotspot);
 }
