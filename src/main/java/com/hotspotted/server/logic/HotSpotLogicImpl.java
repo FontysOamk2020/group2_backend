@@ -1,5 +1,6 @@
 package com.hotspotted.server.logic;
 
+import com.github.slugify.Slugify;
 import com.hotspotted.server.dto.HotSpotSearch;
 import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.Student;
@@ -31,12 +32,21 @@ public class HotSpotLogicImpl implements HotSpotLogic {
     }
 
     @Override
+    public List<HotSpot> findByName(String name) {
+        return hotspotService.findByName(name);
+    }
+
+    @Override
     public void deleteById(UUID id) {
         hotspotService.deleteById(id);
     }
 
     @Override
     public HotSpot createOrUpdate(HotSpot hotspot) {
+        Slugify slg = new Slugify();
+        int count = hotspotService.findByName(hotspot.getName()).size() + 1;
+        String slug = slg.slugify(hotspot.getName() + count);
+        //hotspot.setSlug(slug)
         return hotspotService.createOrUpdate(hotspot);
     }
 }

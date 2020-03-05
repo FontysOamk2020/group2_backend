@@ -30,6 +30,11 @@ public class HotSpotServiceImpl implements HotSpotService {
     }
 
     @Override
+    public List<HotSpot> findByName(String name) {
+        return hotSpotRepository.findByName(name);
+    }
+
+    @Override
     public void deleteById(UUID id) {
         hotSpotRepository.deleteById(id);
     }

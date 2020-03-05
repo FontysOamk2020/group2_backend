@@ -11,6 +11,7 @@ import java.util.UUID;
 public interface HotSpotLogic {
     Optional<HotSpot> findById(UUID id);
     List<HotSpot> getBySearchParams(HotSpotSearch search);
+    List<HotSpot> findByName(String name);
     void deleteById(UUID id);
     HotSpot createOrUpdate(HotSpot hotspot);
 }

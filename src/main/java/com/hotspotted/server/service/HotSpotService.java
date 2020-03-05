@@ -12,6 +12,8 @@ public interface HotSpotService {
 
     List<HotSpot> findBySearchParams(double longitude, double latitude, int range);
 
+    List<HotSpot> findByName(String name);
+
     void deleteById(UUID id);
 
     HotSpot createOrUpdate(HotSpot hotspot);
