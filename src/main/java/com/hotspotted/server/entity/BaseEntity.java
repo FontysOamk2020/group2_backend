@@ -25,6 +25,7 @@ abstract class BaseEntity {
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
+    @JsonIgnore
     private Date createdAt = new Date();
 
     @Column(nullable = false)

@@ -18,21 +18,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static org.springframework.http.ResponseEntity.ok;
 
 @RestController()
 @Tag(name = "HotSpots", description = "All endpoints regarding hot spots")
@@ -49,16 +45,16 @@ public class HotSpotController {
     }
 
     @SecurityRequirements
-    @GetMapping("/search")
-    public List<HotSpot> search(@Valid HotSpotSearch hotSpotSearch) {
-        return hotSpotLogic.getBySearchParams(hotSpotSearch);
-    }
-
-    @SecurityRequirements
     @GetMapping("/{slug}")
     public HotSpot getHotSpot(@PathVariable(value = "slug") String slug) {
         return hotSpotLogic.findBySlug(slug)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, Response.NOT_FOUND.toString()));
+    }
+
+    @SecurityRequirements
+    @GetMapping("/search")
+    public List<HotSpot> search(@Valid HotSpotSearch hotSpotSearch) {
+        return hotSpotLogic.getBySearchParams(hotSpotSearch);
     }
 
     @SecurityRequirements
@@ -78,6 +74,7 @@ public class HotSpotController {
     @PostMapping()
     public HotSpot create(@Valid @RequestBody NewHotSpot newHotSpot, @Parameter(hidden = true) @RequestAttribute("student") Student student) {
         try {
+            System.out.println(LocalTime.now());
             HotSpot hotSpotFromDTO = modelMapper.map(newHotSpot, HotSpot.class);
             hotSpotFromDTO.setCreator(student);
             return this.hotSpotLogic.createOrUpdate(hotSpotFromDTO);
