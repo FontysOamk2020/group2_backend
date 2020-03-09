@@ -19,6 +19,10 @@
 
     <properties>
         <java.version>11</java.version>
+        <sonar.projectKey>FontysOamk2020_group2_backend</sonar.projectKey>
+        <sonar.organization>fontysoamk2020</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>a619b8bb95f574de1fb966a4cac98f82db5da882</sonar.login>
     </properties>
 
     <dependencies>
@@ -47,7 +51,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-oauth2-jose</artifactId>
-            <version>5.2.1.RELEASE</version>
+            <version>5.2.2.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
@@ -62,7 +66,12 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.4-1206-jdbc4</version>
+            <version>42.2.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>2.3.6</version>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -72,6 +81,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.2.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -100,13 +110,13 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
+            <version>16.0.3</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <version>5.6.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -118,6 +128,16 @@
             <artifactId>mockito-junit-jupiter</artifactId>
             <version>2.23.4</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.2.30</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.slugify</groupId>
+            <artifactId>slugify</artifactId>
+            <version>2.4</version>
         </dependency>
     </dependencies>
 
