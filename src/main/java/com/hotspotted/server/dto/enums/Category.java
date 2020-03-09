@@ -1,21 +1,21 @@
 package com.hotspotted.server.dto.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Category {
-    FOOD("Food"),
-    SPORTS("Sports"),
-    DRINKS("Drinks"),
-    ARTS("Arts"),
-    KNOWLEDGE("Knowledge"),
-    MUSIC("Music");
+    FOOD("Food", "/markers/marker.svg"),
+    SPORTS("Sports", "/markers/marker.svg"),
+    DRINKS("Drinks", "/markers/marker.svg"),
+    ARTS("Arts", "/markers/marker.svg"),
+    KNOWLEDGE("Knowledge", "/markers/marker.svg"),
+    MUSIC("Music", "/markers/marker.svg");
 
-    private final String text;
+    private String text;
+    private String markerPath;
 
-    Category(final String text) {
+    Category(String text, String markerPath) {
         this.text = text;
-    }
-
-    @Override
-    public String toString() {
-        return text;
+        this.markerPath = markerPath;
     }
 }

@@ -1,6 +1,7 @@
 package com.hotspotted.server.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hotspotted.server.dto.enums.Category;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +24,10 @@ public class HotSpot extends BaseEntity implements Serializable {
 
     private String description;
 
+    @NotBlank
+    @Column(unique = true)
+    private String slug;
+
     @ManyToOne(
         fetch = FetchType.EAGER,
         optional = false
@@ -30,6 +36,12 @@ public class HotSpot extends BaseEntity implements Serializable {
     private Student creator;
 
     private Category category;
+
+    @Override
+    @JsonProperty
+    public Date getCreatedAt() {
+        return super.getCreatedAt();
+    }
 
     @OneToOne(
             fetch = FetchType.EAGER,

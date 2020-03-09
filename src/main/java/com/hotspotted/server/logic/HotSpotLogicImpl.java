@@ -1,19 +1,20 @@
 package com.hotspotted.server.logic;
 
+import com.github.slugify.Slugify;
 import com.hotspotted.server.dto.HotSpotSearch;
 import com.hotspotted.server.entity.HotSpot;
-import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.service.HotSpotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class HotSpotLogicImpl implements HotSpotLogic {
     private final HotSpotService hotspotService;
+    private final Slugify slugHelper = new Slugify();
 
     @Autowired
     public HotSpotLogicImpl(HotSpotService hotspotService) {
@@ -21,22 +22,29 @@ public class HotSpotLogicImpl implements HotSpotLogic {
     }
 
     @Override
-    public Optional<HotSpot> findById(UUID id) {
-        return hotspotService.findById(id);
-    }
-
-    @Override
     public List<HotSpot> getBySearchParams(HotSpotSearch search) {
-        return hotspotService.findBySearchParams(search.getLongitude(), search.getLatitude(), search.getRange());
+        return hotspotService.findBySearchParams(search);
     }
 
     @Override
-    public void deleteById(UUID id) {
-        hotspotService.deleteById(id);
+    public Optional<HotSpot> findBySlug(String slug) {
+        return hotspotService.findBySlug(slug);
     }
 
     @Override
     public HotSpot createOrUpdate(HotSpot hotspot) {
+        hotspot.setSlug(generateSlug(hotspot.getName()));
         return hotspotService.createOrUpdate(hotspot);
+    }
+
+    private String generateSlug(String name) {
+        String baseSlug = slugHelper.slugify(name);
+
+        String slug = baseSlug;
+        while(this.hotspotService.findBySlug(slug).isPresent()) {
+            slug = baseSlug + "-" + RandomStringUtils.randomAlphabetic(5).toLowerCase();
+        }
+
+        return slug;
     }
 }

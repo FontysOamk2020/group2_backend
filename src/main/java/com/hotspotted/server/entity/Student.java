@@ -1,6 +1,7 @@
 package com.hotspotted.server.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -28,6 +29,7 @@ public class Student extends BaseEntity implements Serializable {
     @NotBlank
     private String nickname;
 
+    @JsonIgnore
     @NotBlank
     @Column(unique = true)
     private String sub;
@@ -35,6 +37,7 @@ public class Student extends BaseEntity implements Serializable {
     @NotBlank
     private String name;
 
+    @JsonIgnore
     @NotBlank
     private String email;
 
