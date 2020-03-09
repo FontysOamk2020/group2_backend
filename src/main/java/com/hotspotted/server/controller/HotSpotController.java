@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +73,6 @@ public class HotSpotController {
     @PostMapping()
     public HotSpot create(@Valid @RequestBody NewHotSpot newHotSpot, @Parameter(hidden = true) @RequestAttribute("student") Student student) {
         try {
-            System.out.println(LocalTime.now());
             HotSpot hotSpotFromDTO = modelMapper.map(newHotSpot, HotSpot.class);
             hotSpotFromDTO.setCreator(student);
             return this.hotSpotLogic.createOrUpdate(hotSpotFromDTO);
