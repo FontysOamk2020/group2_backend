@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Repository
 public interface HotSpotRepository extends JpaRepository<HotSpot, UUID> {
-    @Query("FROM HotSpot H INNER JOIN H.location L WHERE FUNCTION('earth_distance', FUNCTION('ll_to_earth', L.latitude, L.longitude), FUNCTION('ll_to_earth', :long, :lat)) <= :range and " + "(:cat is null or H.category = :cat)")
+    @Query("FROM HotSpot H INNER JOIN H.location L WHERE FUNCTION('earth_distance', FUNCTION('ll_to_earth', L.latitude, L.longitude), FUNCTION('ll_to_earth', :lat, :long)) <= :range and " + "(:cat is null or H.category = :cat)")
     List<HotSpot> findBySearchParams(@Param("long") double longitude, @Param("lat") double latitude, @Param("range") int range, @Param("cat") Category category);
 
     Optional<HotSpot> findBySlug(String slug);
