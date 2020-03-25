@@ -66,6 +66,13 @@ public class HotSpot extends BaseEntity implements Serializable {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JsonManagedReference
     private Set<OpeningHours> openingHours = new HashSet<>();
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+
+    private Set<Comment> comments = new HashSet<>();
 }

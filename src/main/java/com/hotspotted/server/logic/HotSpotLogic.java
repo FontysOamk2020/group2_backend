@@ -13,4 +13,5 @@ public interface HotSpotLogic {
     List<HotSpot> getBySearchParams(HotSpotSearch search);
     Optional<HotSpot> findBySlug(String slug);
     HotSpot createOrUpdate(HotSpot hotspot);
+    HotSpot create(HotSpot hotspot);
 }

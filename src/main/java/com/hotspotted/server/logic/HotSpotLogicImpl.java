@@ -33,6 +33,11 @@ public class HotSpotLogicImpl implements HotSpotLogic {
 
     @Override
     public HotSpot createOrUpdate(HotSpot hotspot) {
+        return hotspotService.createOrUpdate(hotspot);
+    }
+
+    @Override
+    public HotSpot create(HotSpot hotspot) {
         hotspot.setSlug(generateSlug(hotspot.getName()));
         return hotspotService.createOrUpdate(hotspot);
     }
