@@ -1,16 +1,13 @@
 package com.hotspotted.server.service;
 
 import com.hotspotted.server.dto.HotSpotSearch;
-import com.hotspotted.server.dto.enums.Category;
 import com.hotspotted.server.entity.HotSpot;
-import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.repository.HotSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class HotSpotServiceImpl implements HotSpotService {
