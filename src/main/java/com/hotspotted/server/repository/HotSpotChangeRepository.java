@@ -9,5 +9,4 @@ import java.util.UUID;
 
 @Repository
 public interface HotSpotChangeRepository extends JpaRepository<HotSpotChange, UUID> {
-    List<HotSpotChange> findBySlug(String slug);
 }

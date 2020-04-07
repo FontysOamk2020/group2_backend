@@ -3,9 +3,11 @@ package com.hotspotted.server.logic;
 import com.hotspotted.server.entity.HotSpotChange;
 import com.hotspotted.server.service.HotSpotChangeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class HotSpotChangeLogicImpl implements HotSpotChangeLogic {
 
     private final HotSpotChangeService hotSpotChangeService;
@@ -20,8 +22,4 @@ public class HotSpotChangeLogicImpl implements HotSpotChangeLogic {
         return hotSpotChangeService.createOrUpdate(change);
     }
 
-    @Override
-    public List<HotSpotChange> findByHotSpotSlug(String slug) {
-        return hotSpotChangeService.findByHotSpotSlug(slug);
-    }
 }
