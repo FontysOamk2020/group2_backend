@@ -2,10 +2,15 @@ package com.hotspotted.server.controller;
 
 import com.hotspotted.server.controller.enums.Response;
 import com.hotspotted.server.dto.HotSpotSearch;
+import com.hotspotted.server.dto.NewComment;
 import com.hotspotted.server.dto.NewHotSpot;
+import com.hotspotted.server.dto.NewRating;
 import com.hotspotted.server.dto.enums.Category;
+import com.hotspotted.server.entity.Comment;
 import com.hotspotted.server.entity.HotSpot;
+import com.hotspotted.server.entity.Rating;
 import com.hotspotted.server.entity.Student;
+import com.hotspotted.server.exception.NotAllowedException;
 import com.hotspotted.server.logic.HotSpotLogic;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -75,8 +80,42 @@ public class HotSpotController {
         try {
             HotSpot hotSpotFromDTO = modelMapper.map(newHotSpot, HotSpot.class);
             hotSpotFromDTO.setCreator(student);
-            return this.hotSpotLogic.createOrUpdate(hotSpotFromDTO);
+            return this.hotSpotLogic.create(hotSpotFromDTO);
         } catch (Exception e) {
+            logger.error("Something went wrong", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Response.UNEXPECTED_ERROR.toString());
+        }
+    }
+
+    @PostMapping("/{slug}/comment")
+    public HotSpot addComment(@Valid @RequestBody NewComment newComment, @PathVariable(value = "slug") String slug, @Parameter(hidden = true) @RequestAttribute("student") Student student)
+    {
+        HotSpot hotspot = hotSpotLogic.findBySlug(slug)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, Response.NOT_FOUND.toString()));
+
+        try {
+            Comment commentFromDTO = modelMapper.map(newComment, Comment.class);
+            commentFromDTO.setUser(student);
+            hotspot.getComments().add(commentFromDTO);
+            return this.hotSpotLogic.createOrUpdate(hotspot);
+        } catch (Exception e) {
+            logger.error("Something went wrong", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Response.UNEXPECTED_ERROR.toString());
+        }
+    }
+
+    @PostMapping("/{slug}/rate")
+    public HotSpot addRating(@Valid @RequestBody NewRating newRating, @PathVariable(value = "slug") String slug, @Parameter(hidden = true) @RequestAttribute("student") Student student)
+    {
+        HotSpot hotSpot = hotSpotLogic.findBySlug(slug)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, Response.NOT_FOUND.toString()));
+
+        try {
+            Rating ratingFromDTO = modelMapper.map(newRating, Rating.class);
+            ratingFromDTO.setCreator(student);
+            return this.hotSpotLogic.addRating(hotSpot, ratingFromDTO);
+        }
+        catch (Exception e) {
             logger.error("Something went wrong", e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Response.UNEXPECTED_ERROR.toString());
         }
