@@ -16,6 +16,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "hotspot_change")
@@ -23,6 +24,11 @@ import java.util.Set;
 @Getter
 @Setter
 public class HotSpotChange extends BaseEntity implements Serializable {
+
+    @Override
+    @JsonProperty
+    public UUID getId(){ return super.getId();}
+
 
     private RequestedChangeStatus status;
 

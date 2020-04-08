@@ -1,9 +1,7 @@
 package com.hotspotted.server.controller;
 
 import com.hotspotted.server.controller.enums.Response;
-import com.hotspotted.server.dto.NewHotSpot;
 import com.hotspotted.server.dto.NewHotSpotChange;
-import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.HotSpotChange;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.logic.HotSpotChangeLogic;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController()
 @Tag(name = "HotSpotChanges", description = "All endpoints regarding hot spot changes")
@@ -46,5 +45,11 @@ public class HotSpotChangeController {
             logger.error("Something went wrong", e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Response.UNEXPECTED_ERROR.toString());
         }
+    }
+
+    @GetMapping("/")
+    @PreAuthorize("hasAuthority('get:request')")
+    public List<HotSpotChange> getAll() {
+        return hotSpotChangeLogic.getAll();
     }
 }
