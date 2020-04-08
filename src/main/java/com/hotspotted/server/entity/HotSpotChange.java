@@ -31,19 +31,13 @@ public class HotSpotChange extends BaseEntity implements Serializable {
             optional = false
     )
     @JsonManagedReference
-    private Student requestedBy;
+    private Student creator;
 
     @Override
     @JsonProperty
     public Date getCreatedAt() {
         return super.getCreatedAt();
     }
-
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    @JsonIgnore
-    private Date createdAt = new Date();
 
     @NotBlank
     private String name;
