@@ -22,4 +22,9 @@ public class HotSpotChangeLogicImpl implements HotSpotChangeLogic {
         return hotSpotChangeService.createOrUpdate(change);
     }
 
+    @Override
+    public List<HotSpotChange> getAll() {
+        return hotSpotChangeService.getAll();
+    }
+
 }

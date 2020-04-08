@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface HotSpotChangeService {
     HotSpotChange createOrUpdate(HotSpotChange change);
+
+    List<HotSpotChange> getAll();
 }

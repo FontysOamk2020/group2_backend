@@ -21,4 +21,9 @@ public class HotSpotChangeServiceImpl implements HotSpotChangeService {
     public HotSpotChange createOrUpdate(HotSpotChange change) {
         return hotSpotChangeRepository.save(change);
     }
+
+    @Override
+    public List<HotSpotChange> getAll() {
+        return hotSpotChangeRepository.findAll();
+    }
 }
