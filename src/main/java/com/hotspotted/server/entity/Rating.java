@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Setter
 public class Rating extends BaseEntity implements Serializable {
 
+
     private double rating;
 
     @ManyToOne(
