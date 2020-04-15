@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@Tag(name = "student", description = "All endpoints regarding student")
+@Tag(name = "Student", description = "All endpoints regarding student")
 @RequestMapping("/student")
 public class StudentController {
 
