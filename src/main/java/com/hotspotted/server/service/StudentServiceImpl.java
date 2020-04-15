@@ -38,4 +38,8 @@ public class StudentServiceImpl implements StudentService {
         }
         return studentRepository.save(student);
     }
+
+    public void delete(Student student) {
+        studentRepository.delete(student);
+    }
 }
