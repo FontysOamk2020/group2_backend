@@ -21,7 +21,7 @@ public class Student extends BaseEntity implements Serializable {
     @OneToMany(
             fetch = FetchType.EAGER,
             mappedBy = "creator",
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
     @JsonBackReference
@@ -30,7 +30,6 @@ public class Student extends BaseEntity implements Serializable {
     @NotBlank
     private String nickname;
 
-    @JsonIgnore
     @NotBlank
     @Column(unique = true)
     private String sub;
@@ -47,4 +46,13 @@ public class Student extends BaseEntity implements Serializable {
 
     @Column(columnDefinition = "integer default 0")
     private int score = 0;
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "creator",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    @JsonBackReference
+    private Set<Rating> ratings = new HashSet<>();
 }

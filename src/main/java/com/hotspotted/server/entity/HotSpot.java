@@ -70,7 +70,7 @@ public class HotSpot extends BaseEntity implements Serializable {
 
     @OneToMany(
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
     @JsonManagedReference
@@ -78,7 +78,7 @@ public class HotSpot extends BaseEntity implements Serializable {
 
     @OneToMany(
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
     @JsonManagedReference

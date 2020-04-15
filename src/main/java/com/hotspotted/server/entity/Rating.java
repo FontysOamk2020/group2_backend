@@ -14,12 +14,11 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class Rating extends BaseEntity implements Serializable {
-
-
     private double rating;
 
     @ManyToOne(
             fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             optional = false
     )
     @JsonManagedReference
