@@ -2,7 +2,6 @@ package com.hotspotted.server.logic;
 
 import com.github.slugify.Slugify;
 import com.hotspotted.server.dto.HotSpotSearch;
-import com.hotspotted.server.dto.NewComment;
 import com.hotspotted.server.entity.Comment;
 import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.Photo;
@@ -11,7 +10,6 @@ import com.hotspotted.server.exception.NotAllowedException;
 import com.hotspotted.server.service.HotSpotService;
 import com.hotspotted.server.service.ImageService;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

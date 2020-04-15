@@ -2,7 +2,6 @@ package com.hotspotted.server.controller;
 
 import com.hotspotted.server.controller.enums.Response;
 import com.hotspotted.server.dto.HotSpotSearch;
-import com.hotspotted.server.dto.NewComment;
 import com.hotspotted.server.dto.NewHotSpot;
 import com.hotspotted.server.dto.NewRating;
 import com.hotspotted.server.dto.enums.Category;
@@ -10,7 +9,6 @@ import com.hotspotted.server.entity.Comment;
 import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.Rating;
 import com.hotspotted.server.entity.Student;
-import com.hotspotted.server.exception.NotAllowedException;
 import com.hotspotted.server.logic.HotSpotLogic;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
