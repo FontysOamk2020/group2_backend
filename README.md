@@ -13,6 +13,7 @@ In order to run this project local you need to configure a few parameters in the
 | `SPRING_DATABASE_PASSWORD` | xxxxxxxxxxxxxxx |
 | `OATH2_IDENTIFIER` | xxxxxxxxxxxxxxx |
 | `OATH2_DOMAIN` | xxxxxxxxxxxxxxx |
+| `CLOUDINAARY_URL` | xxxxxxxxxxxxxxx |
 
 If you use your own PostgresSQL database you need to install the following extensions using this command:
 ```

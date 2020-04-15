@@ -2,13 +2,19 @@ package com.hotspotted.server.logic;
 
 import com.github.slugify.Slugify;
 import com.hotspotted.server.dto.HotSpotSearch;
+import com.hotspotted.server.dto.NewComment;
+import com.hotspotted.server.entity.Comment;
 import com.hotspotted.server.entity.HotSpot;
+import com.hotspotted.server.entity.Photo;
 import com.hotspotted.server.entity.Rating;
 import com.hotspotted.server.exception.NotAllowedException;
 import com.hotspotted.server.service.HotSpotService;
+import com.hotspotted.server.service.ImageService;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,11 +22,14 @@ import java.util.Optional;
 @Component
 public class HotSpotLogicImpl implements HotSpotLogic {
     private final HotSpotService hotspotService;
+    private final ImageService imageService;
+
     private final Slugify slugHelper = new Slugify();
 
     @Autowired
-    public HotSpotLogicImpl(HotSpotService hotspotService) {
+    public HotSpotLogicImpl(HotSpotService hotspotService, ImageService imageService) {
         this.hotspotService = hotspotService;
+        this.imageService = imageService;
     }
 
     @Override
@@ -68,6 +77,19 @@ public class HotSpotLogicImpl implements HotSpotLogic {
                 hotSpot.getRatings().add(newRating);
                 return createOrUpdate(hotSpot);
             }
+    }
+
+    @Override
+    public HotSpot addComment(HotSpot hotSpot, Comment newComment, MultipartFile image) {
+        if(image != null && !image.isEmpty()) {
+            Photo photo = new Photo();
+            photo.setImageUrl(imageService.upload(image));
+            newComment.setPhoto(photo);
+        }
+
+        hotSpot.getComments().add(newComment);
+
+        return createOrUpdate(hotSpot);
     }
 
     private String generateSlug(String name) {
