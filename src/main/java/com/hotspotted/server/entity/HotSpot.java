@@ -88,9 +88,10 @@ public class HotSpot extends BaseEntity implements Serializable {
     private double ratingAverage;
 
     @PreUpdate
+    @PostLoad
     public void calculateRating() {
         if(getRatings().size() != 0) {
-            this.ratingAverage = getRatings().stream().mapToDouble(Rating::getRating).sum() / getRatings().size();
+            this.ratingAverage = (getRatings().stream().mapToDouble(Rating::getRating).sum()) / getRatings().size();
         }
         else{
             this.ratingAverage = 0;

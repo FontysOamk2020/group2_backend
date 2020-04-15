@@ -29,6 +29,14 @@ public class Comment extends BaseEntity{
     @JsonManagedReference
     private Student user;
 
+    @OneToOne(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private Photo photo;
+
     @Override
     @JsonProperty
     public Date getCreatedAt() {
