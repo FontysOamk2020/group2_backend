@@ -1,13 +1,14 @@
 package com.hotspotted.server.logic;
 
+import com.hotspotted.server.dto.StudentSearch;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.exception.NotAllowedException;
 import com.hotspotted.server.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class StudentLogicImpl implements StudentLogic {
@@ -26,6 +27,11 @@ public class StudentLogicImpl implements StudentLogic {
     @Override
     public Optional<Student> findBySub(String sub) {
         return studentService.findBySub(sub);
+    }
+
+    @Override
+    public List<Student> findBySearchParams(StudentSearch search) {
+        return studentService.findBySearchParams(search);
     }
 
     @Override

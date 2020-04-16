@@ -1,11 +1,13 @@
 package com.hotspotted.server.service;
 
+import com.hotspotted.server.dto.StudentSearch;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.repository.StudentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +23,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Optional<Student> findBySub(String sub) {
         return studentRepository.findBySub(sub);
+    }
+
+    @Override
+    public List<Student> findBySearchParams(StudentSearch search) {
+        return studentRepository.findBySearchParams(search.getName(), search.getNickname());
     }
 
     @Override
