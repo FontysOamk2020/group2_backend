@@ -1,7 +1,7 @@
 package com.hotspotted.server.controller;
 
 import com.hotspotted.server.controller.enums.Response;
-import com.hotspotted.server.entity.HotSpot;
+import com.hotspotted.server.dto.StudentSearch;
 import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.exception.NotAllowedException;
 import com.hotspotted.server.logic.StudentLogic;
@@ -15,6 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController()
 @Tag(name = "Student", description = "All endpoints regarding student")
@@ -31,6 +34,12 @@ public class StudentController {
     @GetMapping("/me")
     public Student getStudent(@Parameter(hidden = true) @RequestAttribute("student") Student student) {
        return student;
+    }
+
+    @PreAuthorize("hasAuthority('read:student')")
+    @GetMapping("/search")
+    public List<Student> getAll(@Valid StudentSearch studentSearch) {
+        return studentLogic.findBySearchParams(studentSearch);
     }
 
     @PreAuthorize("hasAuthority('write:student')")
