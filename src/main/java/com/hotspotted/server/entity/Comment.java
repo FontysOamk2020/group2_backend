@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -15,8 +16,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class Comment extends BaseEntity{
-
+public class Comment extends BaseEntity implements Serializable {
     @NotBlank
     private String text;
 
