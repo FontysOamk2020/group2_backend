@@ -52,7 +52,7 @@ public class Student extends BaseEntity implements Serializable {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
-    @JsonBackReference
+    @JsonIgnore
     private Set<Rating> ratings = new HashSet<>();
 
     @OneToMany(
@@ -61,6 +61,15 @@ public class Student extends BaseEntity implements Serializable {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
-    @JsonBackReference
+    @JsonIgnore
     private Set<Comment> comments = new HashSet<>();
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "creator",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private Set<HotSpotChange> hotspotChanges = new HashSet<>();
 }

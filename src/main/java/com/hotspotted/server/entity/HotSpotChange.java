@@ -1,13 +1,12 @@
 package com.hotspotted.server.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hotspotted.server.dto.enums.Category;
 import com.hotspotted.server.entity.enums.RequestedChangeStatus;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -38,6 +37,7 @@ public class HotSpotChange extends BaseEntity implements Serializable {
 
     private RequestedChangeStatus status;
 
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     @ManyToOne(
             fetch = FetchType.EAGER,
             optional = false
