@@ -18,9 +18,9 @@ import java.util.Set;
 @Getter @Setter
 public class Student extends BaseEntity implements Serializable {
     @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.EAGER,
             mappedBy = "creator",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
     @JsonBackReference
@@ -54,4 +54,13 @@ public class Student extends BaseEntity implements Serializable {
     )
     @JsonBackReference
     private Set<Rating> ratings = new HashSet<>();
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    @JsonBackReference
+    private Set<Comment> comments = new HashSet<>();
 }

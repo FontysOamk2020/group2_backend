@@ -16,6 +16,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 @Getter @Setter
 abstract class BaseEntity {
+
     @Id
     @Type(type ="uuid-char")
     @GeneratedValue(strategy = GenerationType.AUTO)

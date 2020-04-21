@@ -17,6 +17,10 @@ spring:
     open-in-view: false
   jackson:
     date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
 server:
   port: 9999
   error:
