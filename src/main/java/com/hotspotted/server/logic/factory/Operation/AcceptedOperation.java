@@ -17,7 +17,6 @@ public class AcceptedOperation extends OperationHelper implements Operation {
 
     @Override
     public HotSpotChange execute() {
-
         HotSpot foundHotSpot = hotSpotService.findBySlug(hotSpotChange.getHotSpot().getSlug())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, Response.NOT_FOUND.toString()));
 

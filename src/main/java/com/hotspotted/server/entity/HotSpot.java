@@ -3,8 +3,10 @@ package com.hotspotted.server.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hotspotted.server.dto.enums.Category;
+import com.hotspotted.server.entity.constant.ScoreValue;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -28,9 +30,10 @@ public class HotSpot extends BaseEntity implements Serializable {
     @Column(unique = true)
     private String slug;
 
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     @ManyToOne(
-        fetch = FetchType.EAGER,
-        optional = false
+            fetch = FetchType.EAGER,
+            optional = false
     )
     @JsonManagedReference
     private Student creator;
@@ -43,29 +46,27 @@ public class HotSpot extends BaseEntity implements Serializable {
         return super.getCreatedAt();
     }
 
-    @OneToOne(
+    @ManyToOne(
             fetch = FetchType.EAGER,
             optional = false,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     @JsonManagedReference
     private Address address;
 
-    @OneToOne(
+    @ManyToOne(
             fetch = FetchType.EAGER,
             optional = false,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     @JsonManagedReference
     private Location location;
 
-    @OneToMany(
+    @ManyToMany(
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
+    @JsonManagedReference
     private Set<OpeningHours> openingHours = new HashSet<>();
 
     @OneToMany(
@@ -96,5 +97,10 @@ public class HotSpot extends BaseEntity implements Serializable {
         else{
             this.ratingAverage = 0;
         }
+    }
+
+    @PrePersist
+    public void updateStudentScore() {
+        this.getCreator().setScore(this.creator.getScore() + ScoreValue.HOTSPOT);
     }
 }

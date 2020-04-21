@@ -2,7 +2,6 @@ package com.hotspotted.server.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,9 +18,9 @@ import java.util.Set;
 @Getter @Setter
 public class Student extends BaseEntity implements Serializable {
     @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.EAGER,
             mappedBy = "creator",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
     @JsonBackReference
@@ -55,4 +54,13 @@ public class Student extends BaseEntity implements Serializable {
     )
     @JsonBackReference
     private Set<Rating> ratings = new HashSet<>();
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    @JsonBackReference
+    private Set<Comment> comments = new HashSet<>();
 }

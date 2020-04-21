@@ -29,7 +29,6 @@ public class HotSpotChangeLogicImpl implements HotSpotChangeLogic {
         OperationFactory operationFactory = new OperationFactory();
         Operation operation = operationFactory.create(change, hotSpotService, hotSpotChangeService);
         return operation.execute();
-//        return hotSpotChangeService.createOrUpdate(change);
     }
 
     @Override

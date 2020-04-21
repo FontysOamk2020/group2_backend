@@ -1,7 +1,7 @@
 package com.hotspotted.server.controller;
 
 import com.hotspotted.server.controller.enums.Response;
-import com.hotspotted.server.dto.NewHotSpotChange;
+import com.hotspotted.server.dto.NewHotSpot;
 import com.hotspotted.server.entity.HotSpot;
 import com.hotspotted.server.entity.HotSpotChange;
 import com.hotspotted.server.entity.Student;
@@ -44,11 +44,11 @@ public class HotSpotChangeController {
 
     @PreAuthorize("hasAuthority('write:changerequest')")
     @PostMapping("/hotspot/{slug}/change")
-    public ResponseEntity create(@PathVariable(value = "slug") String slug, @Valid @RequestBody NewHotSpotChange newHotSpotChange, @Parameter(hidden = true) @RequestAttribute("student") Student student) {
+    public ResponseEntity create(@PathVariable(value = "slug") String slug, @Valid @RequestBody NewHotSpot newHotSpot, @Parameter(hidden = true) @RequestAttribute("student") Student student) {
         HotSpot foundHotSpot = hotSpotLogic.findBySlug(slug)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, Response.NOT_FOUND.toString()));
         try {
-            HotSpotChange hotSpotChangeFromDTO = modelMapper.map(newHotSpotChange.getNewHotSpot(), HotSpotChange.class);
+            HotSpotChange hotSpotChangeFromDTO = modelMapper.map(newHotSpot, HotSpotChange.class);
             hotSpotChangeFromDTO.setCreator(student);
             hotSpotChangeFromDTO.setHotSpot(foundHotSpot);
             hotSpotChangeFromDTO.setStatus(RequestedChangeStatus.REQUESTED);

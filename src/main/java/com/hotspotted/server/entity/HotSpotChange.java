@@ -58,28 +58,25 @@ public class HotSpotChange extends BaseEntity implements Serializable {
 
     private Category category;
 
-    @OneToOne(
+    @ManyToOne(
             fetch = FetchType.EAGER,
             optional = false,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     @JsonManagedReference
     private Address address;
 
-    @OneToOne(
+    @ManyToOne(
             fetch = FetchType.EAGER,
             optional = false,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     @JsonManagedReference
     private Location location;
 
-    @OneToMany(
+    @ManyToMany(
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     @JsonManagedReference
     private Set<OpeningHours> openingHours = new HashSet<>();
