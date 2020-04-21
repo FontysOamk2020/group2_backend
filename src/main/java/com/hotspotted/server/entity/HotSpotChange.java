@@ -29,6 +29,12 @@ public class HotSpotChange extends BaseEntity implements Serializable {
     @JsonProperty
     public UUID getId(){ return super.getId();}
 
+    @JsonManagedReference
+    @ManyToOne(
+            fetch = FetchType.EAGER,
+            optional = false
+    )
+    private HotSpot hotSpot;
 
     private RequestedChangeStatus status;
 
