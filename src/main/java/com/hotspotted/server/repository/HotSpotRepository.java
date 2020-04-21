@@ -17,4 +17,5 @@ public interface HotSpotRepository extends JpaRepository<HotSpot, UUID> {
     List<HotSpot> findBySearchParams(@Param("long") double longitude, @Param("lat") double latitude, @Param("range") int range, @Param("cat") Category category);
 
     Optional<HotSpot> findBySlug(String slug);
+
 }

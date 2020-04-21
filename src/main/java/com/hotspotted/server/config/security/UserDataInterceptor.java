@@ -5,8 +5,6 @@ import com.hotspotted.server.entity.Student;
 import com.hotspotted.server.logic.Auth0Logic;
 import com.hotspotted.server.logic.StudentLogic;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +18,6 @@ import java.util.Optional;
 
 @Component
 public class UserDataInterceptor extends HandlerInterceptorAdapter {
-    private static Logger logger = LoggerFactory.getLogger(UserDataInterceptor.class);
     private final ModelMapper modelMapper = new ModelMapper();
     private final Auth0Logic auth0Logic;
     private final StudentLogic studentLogic;

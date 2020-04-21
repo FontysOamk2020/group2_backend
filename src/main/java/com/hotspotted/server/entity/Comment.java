@@ -1,6 +1,5 @@
 package com.hotspotted.server.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -9,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -16,8 +16,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class Comment extends BaseEntity{
-
+public class Comment extends BaseEntity implements Serializable {
     @NotBlank
     private String text;
 
@@ -27,6 +26,14 @@ public class Comment extends BaseEntity{
     )
     @JsonManagedReference
     private Student user;
+
+    @OneToOne(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private Photo photo;
 
     @Override
     @JsonProperty

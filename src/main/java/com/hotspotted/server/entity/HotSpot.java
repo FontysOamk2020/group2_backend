@@ -70,9 +70,31 @@ public class HotSpot extends BaseEntity implements Serializable {
 
     @OneToMany(
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
             orphanRemoval = true
     )
-
+    @JsonManagedReference
     private Set<Comment> comments = new HashSet<>();
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private Set<Rating> ratings = new HashSet<>();
+
+    @Transient
+    private double ratingAverage;
+
+    @PreUpdate
+    @PostLoad
+    public void calculateRating() {
+        if(getRatings().size() != 0) {
+            this.ratingAverage = (getRatings().stream().mapToDouble(Rating::getRating).sum()) / getRatings().size();
+        }
+        else{
+            this.ratingAverage = 0;
+        }
+    }
 }
