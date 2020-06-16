@@ -32,8 +32,7 @@ public class HotSpotChangeController {
     private final HotSpotChangeLogic hotSpotChangeLogic;
     private final HotSpotLogic hotSpotLogic;
 
-
-    private static Logger logger = LoggerFactory.getLogger(HotSpotController.class);
+    private static Logger logger = LoggerFactory.getLogger(HotSpotChangeController.class);
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Autowired

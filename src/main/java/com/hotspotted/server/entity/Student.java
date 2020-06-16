@@ -45,31 +45,4 @@ public class Student extends BaseEntity implements Serializable {
 
     @Column(columnDefinition = "integer default 0")
     private int score = 0;
-
-    @OneToMany(
-            fetch = FetchType.EAGER,
-            mappedBy = "creator",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            orphanRemoval = true
-    )
-    @JsonIgnore
-    private Set<Rating> ratings = new HashSet<>();
-
-    @OneToMany(
-            fetch = FetchType.EAGER,
-            mappedBy = "user",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            orphanRemoval = true
-    )
-    @JsonIgnore
-    private Set<Comment> comments = new HashSet<>();
-
-    @OneToMany(
-            fetch = FetchType.EAGER,
-            mappedBy = "creator",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            orphanRemoval = true
-    )
-    @JsonIgnore
-    private Set<HotSpotChange> hotspotChanges = new HashSet<>();
 }

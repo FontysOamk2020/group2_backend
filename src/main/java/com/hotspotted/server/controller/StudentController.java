@@ -33,7 +33,8 @@ public class StudentController {
 
     @GetMapping("/me")
     public Student getStudent(@Parameter(hidden = true) @RequestAttribute("student") Student student) {
-       return student;
+       return studentLogic.findBySub(student.getSub())
+               .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, Response.NOT_FOUND.toString()));
     }
 
     @PreAuthorize("hasAuthority('read:student')")
