@@ -21,6 +21,7 @@ public class AcceptedOperation extends OperationHelper implements Operation {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, Response.NOT_FOUND.toString()));
 
         HotSpot hotSpotFromDTO = modelMapper.map(hotSpotChange, HotSpot.class);
+        hotSpotFromDTO.setRatings(foundHotSpot.getRatings());
         hotSpotFromDTO.setComments(foundHotSpot.getComments());
         hotSpotFromDTO.setCreator(foundHotSpot.getCreator());
         hotSpotFromDTO.setCreatedAt(foundHotSpot.getCreatedAt());
